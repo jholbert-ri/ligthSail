@@ -1,13 +1,18 @@
 version: 0.0
 os: linux
 files:
-  - source: /index.html
-    destination: /var/www/html/
+  - source: app.js
+    destination: /home/ec2-user/app/
+  - source: package.json
+    destination: /home/ec2-user/app/
+  - source: ecosystem.config.js
+    destination: /home/ec2-user/app/
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies
       timeout: 300
       runas: root
+  ApplicationStart:
     - location: scripts/start_server
       timeout: 300
       runas: root
@@ -15,4 +20,3 @@ hooks:
     - location: scripts/stop_server
       timeout: 300
       runas: root
-

@@ -28,17 +28,17 @@ jobs:
           aws-region: ${{ secrets.BETA_AWS_REGION }}
 
       # Paso 1: Linting
-    #   - name: Setup Node.js
-    #     uses: actions/setup-node@v4
-    #     with:
-    #       node-version: "20"
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
 
-    #   - name: Install dependencies
-    #     run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-    #   # Paso 2: Build (Skipping tests)
+      # Paso 2: Build (Skipping tests)
     #   - name: Build Application
-        # run: npm run build
+    #     run: npm run build
 
       # Paso 3: Empaquetado y subida a S3
       - name: Build and package application

@@ -1,3 +1,8 @@
 #!/bin/bash
-service httpd start
+cd /home/ec2-user/app/
 
+# Iniciar la aplicación con PM2 y configurar inicio automático
+pm2 start ecosystem.config.js
+pm2 save
+sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u ec2-user --hp /home/ec2-user
+sudo systemctl start pm2-ec2-user
