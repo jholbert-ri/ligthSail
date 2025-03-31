@@ -6,8 +6,12 @@ sudo dnf install -y curl
 curl -fsSL https://rpm.nodesource.com/setup_18.x | sudo bash -
 sudo dnf install -y nodejs
 
+# Actualizar npm y evitar conflictos
+sudo npm install -g npm@latest --force
+
 # Instalar PM2 globalmente
 sudo npm install -g pm2
 
-# Instalar dependencias del proyecto
-npm install
+# Instalar dependencias del proyecto (como usuario ec2-user)
+sudo chown -R ec2-user:ec2-user /home/ec2-user/app
+npm install --prefix /home/ec2-user/app --no-audit --no-fund
